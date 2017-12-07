@@ -75,9 +75,15 @@
       <OptimizeReferences>true</OptimizeReferences>
       <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
     </Link>
+    <PostBuildEvent>
+      <Command>copyv "$(SolutionDir)README.md" "$(TargetDir)"
+copyv "$(SolutionDir)History.txt" "$(TargetDir)"
+copyv "$(SolutionDir)LICENSE" "$(TargetDir)"
+</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <Text Include="ReadMe.txt" />
+    <Text Include="..\History.txt" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\lsMisc\CenterWindow.h" />
@@ -103,6 +109,10 @@
   <ItemGroup>
     <Image Include="argCheck.ico" />
     <Image Include="small.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\LICENSE" />
+    <None Include="..\README.md" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

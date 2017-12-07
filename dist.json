@@ -7,7 +7,7 @@
             {
             	"setoutdirforbuild": true,
                 "outdir" : "C:/Linkout/argCheck/",
-                "platform":"x86"
+                "platform":"Win32"
             }
     ],
     "archivedir": "C:/Linkout/",
@@ -17,6 +17,7 @@
     "TotalFileCount": 4,
     
     "ShouldNotBeFiles": [
+		"argCheck.ini"
     ],
     
     "ShouldBeFiles": [
