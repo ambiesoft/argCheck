@@ -1,0 +1,29 @@
+{
+	"name": "argCheck",
+	"solution": "argCheck.sln",
+	"targetproject": "argCheck",
+	"configuration": "Release",
+    "targets": [
+            {
+            	"setoutdirforbuild": true,
+                "outdir" : "C:/Linkout/argCheck/",
+                "platform":"x86"
+            }
+    ],
+    "archivedir": "C:/Linkout/",
+    "remotedir": "http://ambiesoft.fam.cx/ffdav/uploads/argCheck/",
+    "remotesha1" : "http://ambiesoft.fam.cx/ffdav/uploads/getSha1.php?file=argCheck/{}",
+    
+    "TotalFileCount": 4,
+    
+    "ShouldNotBeFiles": [
+    ],
+    
+    "ShouldBeFiles": [
+    ],
+    
+    "ShouldBeOneOfThem": [],
+    
+    "obtainverfrom": "History.txt",
+    "obtainverregex": "ver\\d+\\.\\d+"
+}
