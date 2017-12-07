@@ -14,7 +14,7 @@
     "remotedir": "http://ambiesoft.fam.cx/ffdav/uploads/argCheck/",
     "remotesha1" : "http://ambiesoft.fam.cx/ffdav/uploads/getSha1.php?file=argCheck/{}",
     
-    "TotalFileCount": 4,
+    "TotalFileCount": 5,
     
     "ShouldNotBeFiles": [
 		"argCheck.ini"
@@ -26,5 +26,5 @@
     "ShouldBeOneOfThem": [],
     
     "obtainverfrom": "History.txt",
-    "obtainverregex": "ver\\d+\\.\\d+"
+    "obtainverregex": "\\d+\\.\\d+"
 }
