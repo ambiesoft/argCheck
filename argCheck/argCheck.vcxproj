@@ -88,6 +88,7 @@ copyv "$(SolutionDir)LICENSE" "$(TargetDir)"
   <ItemGroup>
     <ClInclude Include="..\..\lsMisc\CenterWindow.h" />
     <ClInclude Include="..\..\lsMisc\CommandLineString.h" />
+    <ClInclude Include="..\..\lsMisc\stdosd\stdosd.h" />
     <ClInclude Include="..\..\lsMisc\stdwin32\stdwin32.h" />
     <ClInclude Include="argCheck.h" />
     <ClInclude Include="Resource.h" />
@@ -96,6 +97,7 @@ copyv "$(SolutionDir)LICENSE" "$(TargetDir)"
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\lsMisc\CenterWindow.cpp" />
+    <ClCompile Include="..\..\lsMisc\stdosd\stdosd.cpp" />
     <ClCompile Include="..\..\lsMisc\stdwin32\stdwin32.cpp" />
     <ClCompile Include="argCheck.cpp" />
     <ClCompile Include="stdafx.cpp">

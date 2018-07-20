@@ -35,10 +35,12 @@
 using namespace std;
 using namespace stdwin32;
 using namespace Ambiesoft;
+using namespace Ambiesoft::stdosd;
 
 #define MAX_LOADSTRING 100
 #define APPNAME L"argCheck"
-#define KAIGYO L"\r\n";
+#define KAIGYO L"\r\n"
+#define HORIZLINE L"----------------------------------"
 
 HINSTANCE hInst;
 WCHAR szTitle[MAX_LOADSTRING];
@@ -194,7 +196,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 	// CRT
 	message += L"CRT";
 	message += KAIGYO;
-	message += L"----------------------------------";
+	message += HORIZLINE;
 	message += KAIGYO;
 	{
 		message += I18N(L"CRT argc");
@@ -220,7 +222,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 	// CommandLineToArgvW
 	message += L"CommandLineToArgvW";
 	message += KAIGYO;
-	message += L"----------------------------------";
+	message += HORIZLINE;
 	message += KAIGYO;
 	{
 		int nNumArgs = 0;
@@ -249,11 +251,11 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 	// CCommandLineString
 	message += L"CCommandLineString";
 	message += KAIGYO;
-	message += L"----------------------------------";
+	message += HORIZLINE;
 	message += KAIGYO;
 	{
 		int nNumArgs = 0;
-		LPWSTR* pArgv = CCommandLineString::getCommandLine(GetCommandLine(), &nNumArgs);
+		LPWSTR* pArgv = CCommandLineString::getCommandLineArg(GetCommandLine(), &nNumArgs);
 		message += I18N(L"CCommandLineString argc");
 		message += L":";
 		message += KAIGYO;
@@ -272,7 +274,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 			message += KAIGYO;
 			message += KAIGYO;
 		}
-		CCommandLineString::freeCommandLine(pArgv);
+		CCommandLineString::freeCommandLineArg(pArgv);
 	}
 	//MessageBox(NULL,
 	//	message.c_str(),
