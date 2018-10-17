@@ -88,6 +88,7 @@ copyv "$(SolutionDir)LICENSE" "$(TargetDir)"
   <ItemGroup>
     <ClInclude Include="..\..\lsMisc\CenterWindow.h" />
     <ClInclude Include="..\..\lsMisc\CommandLineString.h" />
+    <ClInclude Include="..\..\lsMisc\HighDPI.h" />
     <ClInclude Include="..\..\lsMisc\stdosd\stdosd.h" />
     <ClInclude Include="..\..\lsMisc\stdwin32\stdwin32.h" />
     <ClInclude Include="argCheck.h" />
@@ -97,7 +98,11 @@ copyv "$(SolutionDir)LICENSE" "$(TargetDir)"
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\lsMisc\CenterWindow.cpp" />
-    <ClCompile Include="..\..\lsMisc\stdosd\stdosd.cpp" />
+    <ClCompile Include="..\..\lsMisc\HighDPI.cpp" />
+    <ClCompile Include="..\..\lsMisc\stdosd\stdosd.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
     <ClCompile Include="..\..\lsMisc\stdwin32\stdwin32.cpp" />
     <ClCompile Include="argCheck.cpp" />
     <ClCompile Include="stdafx.cpp">

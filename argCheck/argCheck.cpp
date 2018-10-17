@@ -27,6 +27,7 @@
 #include "stdafx.h"
 
 #include "../../lsMisc/CommandLineString.h"
+#include "../../lsMisc/HighDPI.h"
 
 #include "argCheck.h"
 
@@ -160,6 +161,8 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 {
 	UNREFERENCED_PARAMETER(hPrevInstance);
 	UNREFERENCED_PARAMETER(lpCmdLine);
+
+	InitHighDPISupport();
 
 	gIni = stdCombinePath(stdGetParentDirectory(stdGetModuleFileName()), 
 		stdGetFileNameWitoutExtension(stdGetModuleFileName()) + L".ini");
