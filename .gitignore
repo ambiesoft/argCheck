@@ -5,4 +5,5 @@ argCheck.v12.suo
 argCheck/Debug/
 argCheck/Release/
 ipch/
+*.aps
 
