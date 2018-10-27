@@ -28,6 +28,7 @@
 
 #include "../../lsMisc/CommandLineString.h"
 #include "../../lsMisc/HighDPI.h"
+#include "../../lsMisc/OpenCommon.h"
 
 #include "argCheck.h"
 
@@ -43,7 +44,7 @@ using namespace Ambiesoft::stdosd;
 #define KAIGYO L"\r\n"
 #define HORIZLINE L"----------------------------------"
 
-HINSTANCE hInst;
+HINSTANCE ghInst;
 WCHAR szTitle[MAX_LOADSTRING];
 WCHAR szWindowClass[MAX_LOADSTRING];
 
@@ -56,6 +57,28 @@ struct MainDialogData {
 	bool bWW_;
 };
 
+INT_PTR CALLBACK About(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
+{
+	UNREFERENCED_PARAMETER(lParam);
+	switch (message)
+	{
+	case WM_INITDIALOG:
+		return (INT_PTR)TRUE;
+
+	case WM_COMMAND:
+		if (LOWORD(wParam) == IDOK || LOWORD(wParam) == IDCANCEL)
+		{
+			EndDialog(hDlg, LOWORD(wParam));
+			return (INT_PTR)TRUE;
+		}
+		else if (LOWORD(wParam) == IDC_BUTTON_GOTOWEB)
+		{
+			OpenCommon(hDlg, L"https://github.com/ambiesoft/argCheck");
+		}
+		break;
+	}
+	return (INT_PTR)FALSE;
+}
 
 //// http://rarara.cafe.coocan.jp/cgi-bin/lng/vc/vclng.cgi?print+200807/08070047.txt
 //BOOL GetRightTurn(HWND hEdit)
@@ -112,6 +135,9 @@ BOOL CALLBACK MainDlgProc(HWND hDlg, UINT uMsg, WPARAM wParam, LPARAM lParam)
 		setWW(hDlg,intval);
 		SendDlgItemMessage(hDlg, IDC_CHECK_WORDWRAP, BM_SETCHECK, intval, 0);
 
+		HICON hIcon = LoadIcon(GetModuleHandle(NULL), MAKEINTRESOURCE(IDI_ARGCHECK));
+		SendMessage(hDlg, WM_SETICON, ICON_BIG, (LPARAM)hIcon);
+
 		CenterWindow(hDlg);
 		return TRUE;
 	}
@@ -121,7 +147,8 @@ BOOL CALLBACK MainDlgProc(HWND hDlg, UINT uMsg, WPARAM wParam, LPARAM lParam)
 	{
 		switch (LOWORD(wParam))
 		{
-		case IDOK:
+		case IDOK:// through
+		case IDM_EXIT:
 		{
 			int ww = SendDlgItemMessage(hDlg, IDC_CHECK_WORDWRAP, BM_GETCHECK, 0, 0);
 			if (!WritePrivateProfileString(L"Option", L"WordWrap", ww ? L"1" : L"0", gIni.c_str()))
@@ -147,6 +174,13 @@ BOOL CALLBACK MainDlgProc(HWND hDlg, UINT uMsg, WPARAM wParam, LPARAM lParam)
 			setWW(hDlg,0 != SendDlgItemMessage(hDlg, IDC_CHECK_WORDWRAP, BM_GETCHECK, 0, 0));
 		}
 		break;
+
+		case IDM_ABOUT:
+		{
+			DialogBox(ghInst, MAKEINTRESOURCE(IDD_ABOUTBOX), hDlg, About);
+		}
+		break;
+
 		}
 	}
 	break;
@@ -161,6 +195,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 {
 	UNREFERENCED_PARAMETER(hPrevInstance);
 	UNREFERENCED_PARAMETER(lpCmdLine);
+	ghInst = hInstance;
 
 	InitHighDPISupport();
 
@@ -304,21 +339,3 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 }
 
 
-INT_PTR CALLBACK About(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
-{
-	UNREFERENCED_PARAMETER(lParam);
-	switch (message)
-	{
-	case WM_INITDIALOG:
-		return (INT_PTR)TRUE;
-
-	case WM_COMMAND:
-		if (LOWORD(wParam) == IDOK || LOWORD(wParam) == IDCANCEL)
-		{
-			EndDialog(hDlg, LOWORD(wParam));
-			return (INT_PTR)TRUE;
-		}
-		break;
-	}
-	return (INT_PTR)FALSE;
-}
