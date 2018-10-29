@@ -1,3 +1,6 @@
+reparse
+use common control ver6
+
 2018/10/28 version 1.0.2
 HighDPI support
 

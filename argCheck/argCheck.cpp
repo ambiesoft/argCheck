@@ -53,6 +53,7 @@ wstring gIni;
 struct MainDialogData {
 	wstring title_;
 	wstring message_;
+	wstring commnadline_;
 	bool again_;
 	bool bWW_;
 };
@@ -78,6 +79,139 @@ INT_PTR CALLBACK About(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
 		break;
 	}
 	return (INT_PTR)FALSE;
+}
+
+wstring ParseCommandLine(LPCWSTR pCommnadLine = nullptr)
+{
+	bool bUserInput = pCommnadLine != nullptr;
+	if (!pCommnadLine)
+	{
+		pCommnadLine = GetCommandLine();
+	}
+
+	wstring message;
+
+	message += I18N(L"Current Directory");
+	message += L":";
+	message += KAIGYO;
+	message += stdGetCurrentDirectory();
+	message += KAIGYO;
+	message += KAIGYO;
+
+
+
+	message += I18N(L"Command Line");
+	message += L":";
+	message += KAIGYO;
+	message += pCommnadLine;
+	message += KAIGYO;
+	message += KAIGYO;
+
+
+	message += I18N(L"Length");
+	message += L":";
+	message += KAIGYO;
+	message += std::to_wstring(lstrlen(pCommnadLine));
+	message += KAIGYO;
+	message += KAIGYO;
+
+
+	// CRT
+	if (bUserInput)
+	{
+		message += L"CRT is not available.";
+		message += KAIGYO;
+		message += HORIZLINE;
+		message += KAIGYO;
+		message += KAIGYO;
+	}
+	else
+	{
+		message += L"CRT";
+		message += KAIGYO;
+		message += HORIZLINE;
+		message += KAIGYO;
+		{
+			message += I18N(L"CRT argc");
+			message += L":";
+			message += KAIGYO;
+			message += stdItoT(__argc);
+			message += KAIGYO;
+			message += KAIGYO;
+
+			for (int i = 0; i < __argc; ++i)
+			{
+				message += I18N(L"CRT Argument");
+				message += L" ";
+				message += to_wstring(i);
+				message += L":";
+				message += KAIGYO;
+				message += __wargv[i];
+				message += KAIGYO;
+				message += KAIGYO;
+			}
+		}
+	}
+
+	// CommandLineToArgvW
+	message += L"CommandLineToArgvW";
+	message += KAIGYO;
+	message += HORIZLINE;
+	message += KAIGYO;
+	{
+		int nNumArgs = 0;
+		LPWSTR* pArgv = CommandLineToArgvW(pCommnadLine, &nNumArgs);
+		message += I18N(L"Shell argc");
+		message += L":";
+		message += KAIGYO;
+		message += stdItoT(nNumArgs);
+		message += KAIGYO;
+		message += KAIGYO;
+
+		for (int i = 0; i < nNumArgs; ++i)
+		{
+			message += I18N(L"Shell Argument");
+			message += L" ";
+			message += to_wstring(i);
+			message += L":";
+			message += KAIGYO;
+			message += pArgv[i];
+			message += KAIGYO;
+			message += KAIGYO;
+		}
+		LocalFree(pArgv);
+	}
+
+	// CCommandLineString
+	message += L"CCommandLineString";
+	message += KAIGYO;
+	message += HORIZLINE;
+	message += KAIGYO;
+	{
+		int nNumArgs = 0;
+		LPWSTR* pArgv = CCommandLineString::getCommandLineArg(pCommnadLine, &nNumArgs);
+		message += I18N(L"CCommandLineString argc");
+		message += L":";
+		message += KAIGYO;
+		message += stdItoT(nNumArgs);
+		message += KAIGYO;
+		message += KAIGYO;
+
+		for (int i = 0; i < nNumArgs; ++i)
+		{
+			message += I18N(L"CCommandLineString Argument");
+			message += L" ";
+			message += to_wstring(i);
+			message += L":";
+			message += KAIGYO;
+			message += pArgv[i];
+			message += KAIGYO;
+			message += KAIGYO;
+		}
+		CCommandLineString::freeCommandLineArg(pArgv);
+	}
+
+	return message;
 }
 
 //// http://rarara.cafe.coocan.jp/cgi-bin/lng/vc/vclng.cgi?print+200807/08070047.txt
@@ -118,6 +252,16 @@ void setWW(HWND hDlg, BOOL bOn)
 		ShowWindow(GetDlgItem(hDlg, IDC_EDIT_MAIN), SW_SHOW);
 	}
 }
+
+wstring GetDialogText(HWND hDlg, UINT id)
+{
+	int len = GetWindowTextLength(GetDlgItem(hDlg, id));
+	std::vector<wchar_t> buff(len + 1);
+	GetDlgItemText(hDlg, id, &buff[0], len + 1);
+	buff[len] = 0;
+	return &buff[0];
+}
+
 BOOL CALLBACK MainDlgProc(HWND hDlg, UINT uMsg, WPARAM wParam, LPARAM lParam)
 {
 	static MainDialogData* spData;
@@ -128,6 +272,8 @@ BOOL CALLBACK MainDlgProc(HWND hDlg, UINT uMsg, WPARAM wParam, LPARAM lParam)
 		spData = (MainDialogData*)lParam;
 		SetWindowText(hDlg, spData->title_.c_str());
 		
+		SetDlgItemText(hDlg, IDC_EDIT_COMMANDLINE, spData->commnadline_.c_str());
+
 		SetDlgItemText(hDlg, IDC_EDIT_MAIN, spData->message_.c_str());
 		SetDlgItemText(hDlg, IDC_EDIT_MAINWW, spData->message_.c_str());
 
@@ -164,6 +310,27 @@ BOOL CALLBACK MainDlgProc(HWND hDlg, UINT uMsg, WPARAM wParam, LPARAM lParam)
 		{
 			EndDialog(hDlg, IDCANCEL);
 			return 0;
+		}
+		break;
+
+		case IDC_BUTTON_REPARSE:
+		{
+			wstring text = GetDialogText(hDlg, IDC_EDIT_COMMANDLINE);
+			wstring message = ParseCommandLine(text.c_str());
+
+			SetDlgItemText(hDlg, IDC_EDIT_MAIN, message.c_str());
+			SetDlgItemText(hDlg, IDC_EDIT_MAINWW, message.c_str());
+		}
+		break;
+
+		case IDC_BUTTON_NEWINSTANCE:
+		{
+			wstring exe = stdGetModuleFileName();
+			wstring text = GetDialogText(hDlg, IDC_EDIT_COMMANDLINE);
+
+			OpenCommon(hDlg,
+				exe.c_str(),
+				text.c_str());
 		}
 		break;
 
@@ -205,115 +372,8 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 	LoadStringW(hInstance, IDS_APP_TITLE, szTitle, MAX_LOADSTRING);
 	LoadStringW(hInstance, IDC_ARGCHECK, szWindowClass, MAX_LOADSTRING);
 
-	wstring message;
-	message += I18N(L"Current Directory");
-	message += L":";
-	message += KAIGYO;
-	message += stdGetCurrentDirectory();
-	message += KAIGYO;
-	message += KAIGYO;
 
-
-
-	message += I18N(L"Command Line");
-	message += L":";
-	message += KAIGYO;
-	message += GetCommandLine();
-	message += KAIGYO;
-	message += KAIGYO;
-
-
-	message += I18N(L"Length");
-	message += L":";
-	message += KAIGYO;
-	message += std::to_wstring(lstrlen(GetCommandLine()));
-	message += KAIGYO;
-	message += KAIGYO;
-
-
-	// CRT
-	message += L"CRT";
-	message += KAIGYO;
-	message += HORIZLINE;
-	message += KAIGYO;
-	{
-		message += I18N(L"CRT argc");
-		message += L":";
-		message += KAIGYO;
-		message += stdItoT(__argc);
-		message += KAIGYO;
-		message += KAIGYO;
-
-		for (int i = 0; i < __argc; ++i)
-		{
-			message += I18N(L"CRT Argument");
-			message += L" ";
-			message += to_wstring(i);
-			message += L":";
-			message += KAIGYO;
-			message += __wargv[i];
-			message += KAIGYO;
-			message += KAIGYO;
-		}
-	}
-
-	// CommandLineToArgvW
-	message += L"CommandLineToArgvW";
-	message += KAIGYO;
-	message += HORIZLINE;
-	message += KAIGYO;
-	{
-		int nNumArgs = 0;
-		LPWSTR* pArgv = CommandLineToArgvW(GetCommandLine(), &nNumArgs);
-		message += I18N(L"Shell argc");
-		message += L":";
-		message += KAIGYO;
-		message += stdItoT(nNumArgs);
-		message += KAIGYO;
-		message += KAIGYO;
-
-		for (int i = 0; i < nNumArgs; ++i)
-		{
-			message += I18N(L"Shell Argument");
-			message += L" ";
-			message += to_wstring(i);
-			message += L":";
-			message += KAIGYO;
-			message += pArgv[i];
-			message += KAIGYO;
-			message += KAIGYO;
-		}
-		LocalFree(pArgv);
-	}
-
-	// CCommandLineString
-	message += L"CCommandLineString";
-	message += KAIGYO;
-	message += HORIZLINE;
-	message += KAIGYO;
-	{
-		int nNumArgs = 0;
-		LPWSTR* pArgv = CCommandLineString::getCommandLineArg(GetCommandLine(), &nNumArgs);
-		message += I18N(L"CCommandLineString argc");
-		message += L":";
-		message += KAIGYO;
-		message += stdItoT(nNumArgs);
-		message += KAIGYO;
-		message += KAIGYO;
-
-		for (int i = 0; i < nNumArgs; ++i)
-		{
-			message += I18N(L"CCommandLineString Argument");
-			message += L" ";
-			message += to_wstring(i);
-			message += L":";
-			message += KAIGYO;
-			message += pArgv[i];
-			message += KAIGYO;
-			message += KAIGYO;
-		}
-		CCommandLineString::freeCommandLineArg(pArgv);
-	}
+	wstring message = ParseCommandLine();
 	//MessageBox(NULL,
 	//	message.c_str(),
 	//	szTitle,
@@ -324,6 +384,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 	{
 		data.title_ = szTitle;
 		data.message_ = message;
+		data.commnadline_ = GetCommandLine();
 		data.again_ = false;
 		if (IDOK != DialogBoxParam(hInstance,
 			MAKEINTRESOURCE(IDD_DIALOG_MAIN),
