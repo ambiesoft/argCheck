@@ -35,7 +35,7 @@
 #define I18N(t) t
 
 using namespace std;
-using namespace stdwin32;
+using namespace Ambiesoft::stdwin32;
 using namespace Ambiesoft;
 using namespace Ambiesoft::stdosd;
 
@@ -262,7 +262,7 @@ wstring GetDialogText(HWND hDlg, UINT id)
 	return &buff[0];
 }
 
-BOOL CALLBACK MainDlgProc(HWND hDlg, UINT uMsg, WPARAM wParam, LPARAM lParam)
+INT_PTR CALLBACK MainDlgProc(HWND hDlg, UINT uMsg, WPARAM wParam, LPARAM lParam)
 {
 	static MainDialogData* spData;
 	switch (uMsg)
@@ -296,7 +296,7 @@ BOOL CALLBACK MainDlgProc(HWND hDlg, UINT uMsg, WPARAM wParam, LPARAM lParam)
 		case IDOK:// through
 		case IDM_EXIT:
 		{
-			int ww = SendDlgItemMessage(hDlg, IDC_CHECK_WORDWRAP, BM_GETCHECK, 0, 0);
+			LRESULT ww = SendDlgItemMessage(hDlg, IDC_CHECK_WORDWRAP, BM_GETCHECK, 0, 0);
 			if (!WritePrivateProfileString(L"Option", L"WordWrap", ww ? L"1" : L"0", gIni.c_str()))
 			{
 				MessageBox(hDlg, L"Save failed", APPNAME, MB_ICONERROR);
@@ -367,7 +367,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 	InitHighDPISupport();
 
 	gIni = stdCombinePath(stdGetParentDirectory(stdGetModuleFileName()), 
-		stdGetFileNameWitoutExtension(stdGetModuleFileName()) + L".ini");
+		stdGetFileNameWitoutExtension(APPNAME) + L".ini");
 
 	LoadStringW(hInstance, IDS_APP_TITLE, szTitle, MAX_LOADSTRING);
 	LoadStringW(hInstance, IDC_ARGCHECK, szWindowClass, MAX_LOADSTRING);

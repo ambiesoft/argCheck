@@ -6,4 +6,7 @@ argCheck/Debug/
 argCheck/Release/
 ipch/
 *.aps
+build/
+.*~
+
 

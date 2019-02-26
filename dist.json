@@ -6,21 +6,33 @@
     "targets": [
             {
             	"setoutdirforbuild": true,
-                "outdir" : "C:/Linkout/argCheck/",
+                "outdir" : "build/argCheck",
                 "platform":"Win32"
+            },
+            {
+            	"setoutdirforbuild": true,
+                "outdir" : "build/argCheck",
+                "platform":"x64"
             }
     ],
     "archivedir": "C:/Linkout/",
     "remotedir": "http://ambiesoft.fam.cx/ffdav/uploads/argCheck/",
     "remotesha1" : "http://ambiesoft.fam.cx/ffdav/uploads/getSha1.php?file=argCheck/{}",
     
-    "TotalFileCount": 5,
+    "TotalFileCount": "exact",
     
     "ShouldNotBeFiles": [
 		"argCheck.ini"
     ],
     
     "ShouldBeFiles": [
+		"argCheck.exe",
+		"argCheck.pdb",
+		"argCheck64.exe",
+		"argCheck64.pdb",
+		"History.txt",
+		"LICENSE",
+		"README.md"
     ],
     
     "ShouldBeOneOfThem": [],
