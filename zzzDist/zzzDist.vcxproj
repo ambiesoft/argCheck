@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
       <Configuration>Debug</Configuration>
@@ -19,9 +19,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{D982DFD8-9CE0-4215-A03E-DD8AC7D622D5}</ProjectGuid>
+    <ProjectGuid>{E6DE76ED-3301-459E-B122-390CB90AB5A8}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>argCheck</RootNamespace>
+    <RootNamespace>zzzDist</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -68,147 +68,116 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <OutDir>$(SolutionDir)$(Configuration)\$(PlatformToolset)\$(ProjectName)\$(PlatformTarget)\</OutDir>
+    <OutDir>$(SolutionDir)$(Configuration)\$(PlatformToolset)\$(SolutionName)\$(PlatformTarget)\</OutDir>
     <IntDir>$(Configuration)\$(PlatformToolset)\$(PlatformName)\</IntDir>
-    <TargetName>$(ProjectName)</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <OutDir>$(SolutionDir)$(Configuration)\$(PlatformToolset)\$(ProjectName)\$(PlatformTarget)\</OutDir>
+    <OutDir>$(SolutionDir)$(Configuration)\$(PlatformToolset)\$(SolutionName)\$(PlatformTarget)\</OutDir>
     <IntDir>$(Configuration)\$(PlatformToolset)\$(PlatformName)\</IntDir>
-    <TargetName>$(ProjectName)</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <OutDir>$(SolutionDir)$(Configuration)\$(PlatformToolset)\$(ProjectName)\$(PlatformTarget)\</OutDir>
+    <OutDir>$(SolutionDir)$(Configuration)\$(PlatformToolset)\$(SolutionName)\$(PlatformTarget)\</OutDir>
     <IntDir>$(Configuration)\$(PlatformToolset)\$(PlatformName)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <OutDir>$(SolutionDir)$(Configuration)\$(PlatformToolset)\$(ProjectName)\$(PlatformTarget)\</OutDir>
+    <OutDir>$(SolutionDir)$(Configuration)\$(PlatformToolset)\$(SolutionName)\$(PlatformTarget)\</OutDir>
     <IntDir>$(Configuration)\$(PlatformToolset)\$(PlatformName)\</IntDir>
-    <TargetName>$(ProjectName)</TargetName>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
-      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
-      <SubSystem>Windows</SubSystem>
+      <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
-      <SubSystem>Windows</SubSystem>
+      <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
-      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
-      <SubSystem>Windows</SubSystem>
+      <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
     </Link>
-    <PostBuildEvent>
+    <CustomBuildStep>
       <Command>
       </Command>
+    </CustomBuildStep>
+    <PostBuildEvent>
+      <Command>copyv "$(SolutionDir)README.md" "$(TargetDir)"
+copyv "$(SolutionDir)History.txt" "$(TargetDir)"
+copyv "$(SolutionDir)LICENSE" "$(TargetDir)"
+
+echo C:\LegacyPrograms\FFC\FFC.exe /t12 "$(VCInstallDir)redist\$(PlatformTarget)\Microsoft.VC120.CRT\*" /to:"$(OutDir)"
+C:\LegacyPrograms\FFC\FFC.exe /t12 "$(VCInstallDir)redist\$(PlatformTarget)\Microsoft.VC120.CRT\*" /to:"$(OutDir)"
+
+del "$(OutDir)zzzDist.*"
+</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
-      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
-      <SubSystem>Windows</SubSystem>
+      <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
     </Link>
-    <PostBuildEvent>
+    <CustomBuildStep>
       <Command>
       </Command>
+    </CustomBuildStep>
+    <PostBuildEvent>
+      <Command>copyv "$(SolutionDir)README.md" "$(TargetDir)"
+copyv "$(SolutionDir)History.txt" "$(TargetDir)"
+copyv "$(SolutionDir)LICENSE" "$(TargetDir)"
+
+echo C:\LegacyPrograms\FFC\FFC.exe /t12 "$(VCInstallDir)redist\$(PlatformTarget)\Microsoft.VC120.CRT\*" /to:"$(OutDir)"
+C:\LegacyPrograms\FFC\FFC.exe /t12 "$(VCInstallDir)redist\$(PlatformTarget)\Microsoft.VC120.CRT\*" /to:"$(OutDir)"
+
+del "$(OutDir)zzzDist.*"
+</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <Text Include="..\History.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="..\..\lsMisc\CenterWindow.h" />
-    <ClInclude Include="..\..\lsMisc\CommandLineString.h" />
-    <ClInclude Include="..\..\lsMisc\HighDPI.h" />
-    <ClInclude Include="..\..\lsMisc\OpenCommon.h" />
-    <ClInclude Include="..\..\lsMisc\stdosd\stdosd.h" />
-    <ClInclude Include="..\..\lsMisc\stdwin32\stdwin32.h" />
-    <ClInclude Include="argCheck.h" />
-    <ClInclude Include="Resource.h" />
-    <ClInclude Include="stdafx.h" />
-    <ClInclude Include="targetver.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="..\..\lsMisc\CenterWindow.cpp" />
-    <ClCompile Include="..\..\lsMisc\HighDPI.cpp" />
-    <ClCompile Include="..\..\lsMisc\OpenCommon.cpp" />
-    <ClCompile Include="..\..\lsMisc\stdosd\stdosd.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="..\..\lsMisc\stdosd\stdosd_win.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="..\..\lsMisc\stdwin32\stdwin32.cpp" />
-    <ClCompile Include="argCheck.cpp" />
-    <ClCompile Include="stdafx.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="argCheck.rc" />
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="argCheck.ico" />
-    <Image Include="small.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="..\LICENSE" />
-    <None Include="..\README.md" />
+    <ClCompile Include="Source.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

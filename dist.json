@@ -1,20 +1,21 @@
 {
 	"name": "argCheck",
 	"solution": "argCheck.sln",
-	"targetproject": "argCheck",
+	"targetproject": "zzzDist",
 	"configuration": "Release",
     "targets": [
             {
-            	"setoutdirforbuild": true,
-                "outdir" : "build/argCheck",
+            	"setoutdirforbuild": false,
+        	    "outdir" : "Release\\v120_xp\\argCheck\\x86\\",
                 "platform":"Win32"
             },
             {
-            	"setoutdirforbuild": true,
-                "outdir" : "build/argCheck",
+            	"setoutdirforbuild": false,
+        	    "outdir" : "Release\\v120_xp\\argCheck\\x64\\",
                 "platform":"x64"
             }
     ],
+    "archivingdir": "Release\\v120_xp\\argCheck\\",
     "archivedir": "C:/Linkout/",
     "remotedir": "http://ambiesoft.fam.cx/ffdav/uploads/argCheck/",
     "remotesha1" : "http://ambiesoft.fam.cx/ffdav/uploads/getSha1.php?file=argCheck/{}",
@@ -28,8 +29,9 @@
     "ShouldBeFiles": [
 		"argCheck.exe",
 		"argCheck.pdb",
-		"argCheck64.exe",
-		"argCheck64.pdb",
+		"msvcp120.dll",
+		"msvcr120.dll",
+		"vccorlib120.dll",
 		"History.txt",
 		"LICENSE",
 		"README.md"
