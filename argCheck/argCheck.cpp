@@ -29,6 +29,7 @@
 #include "../../lsMisc/CommandLineString.h"
 #include "../../lsMisc/HighDPI.h"
 #include "../../lsMisc/OpenCommon.h"
+#include "../../lsMisc/EnableTextTripleClickSelectAll.h"
 
 #include "argCheck.h"
 
@@ -262,6 +263,7 @@ wstring GetDialogText(HWND hDlg, UINT id)
 	return &buff[0];
 }
 
+
 INT_PTR CALLBACK MainDlgProc(HWND hDlg, UINT uMsg, WPARAM wParam, LPARAM lParam)
 {
 	static MainDialogData* spData;
@@ -273,6 +275,7 @@ INT_PTR CALLBACK MainDlgProc(HWND hDlg, UINT uMsg, WPARAM wParam, LPARAM lParam)
 		SetWindowText(hDlg, spData->title_.c_str());
 		
 		SetDlgItemText(hDlg, IDC_EDIT_COMMANDLINE, spData->commnadline_.c_str());
+		EnableTextTripleClickSelectAll(GetDlgItem(hDlg, IDC_EDIT_COMMANDLINE));
 
 		SetDlgItemText(hDlg, IDC_EDIT_MAIN, spData->message_.c_str());
 		SetDlgItemText(hDlg, IDC_EDIT_MAINWW, spData->message_.c_str());
