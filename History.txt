@@ -1,3 +1,6 @@
+2020/04/18 version 1.0.7
+Added 'argCheckFromClipboard'
+
 2019/08/27 version 1.0.6
 triple click to select all text
 

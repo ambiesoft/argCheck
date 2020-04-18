@@ -7,6 +7,12 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "argCheck", "argCheck\argChe
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "zzzDist", "zzzDist\zzzDist.vcxproj", "{E6DE76ED-3301-459E-B122-390CB90AB5A8}"
 	ProjectSection(ProjectDependencies) = postProject
+		{308BF92D-11B1-486E-8BF7-06D36472C39D} = {308BF92D-11B1-486E-8BF7-06D36472C39D}
+		{D982DFD8-9CE0-4215-A03E-DD8AC7D622D5} = {D982DFD8-9CE0-4215-A03E-DD8AC7D622D5}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "argCheckFromClipboard", "argCheckFromClipboard\argCheckFromClipboard.vcxproj", "{308BF92D-11B1-486E-8BF7-06D36472C39D}"
+	ProjectSection(ProjectDependencies) = postProject
 		{D982DFD8-9CE0-4215-A03E-DD8AC7D622D5} = {D982DFD8-9CE0-4215-A03E-DD8AC7D622D5}
 	EndProjectSection
 EndProject
@@ -32,6 +38,14 @@ Global
 		{E6DE76ED-3301-459E-B122-390CB90AB5A8}.Release|Win32.Build.0 = Release|Win32
 		{E6DE76ED-3301-459E-B122-390CB90AB5A8}.Release|x64.ActiveCfg = Release|x64
 		{E6DE76ED-3301-459E-B122-390CB90AB5A8}.Release|x64.Build.0 = Release|x64
+		{308BF92D-11B1-486E-8BF7-06D36472C39D}.Debug|Win32.ActiveCfg = Debug|Win32
+		{308BF92D-11B1-486E-8BF7-06D36472C39D}.Debug|Win32.Build.0 = Debug|Win32
+		{308BF92D-11B1-486E-8BF7-06D36472C39D}.Debug|x64.ActiveCfg = Debug|x64
+		{308BF92D-11B1-486E-8BF7-06D36472C39D}.Debug|x64.Build.0 = Debug|x64
+		{308BF92D-11B1-486E-8BF7-06D36472C39D}.Release|Win32.ActiveCfg = Release|Win32
+		{308BF92D-11B1-486E-8BF7-06D36472C39D}.Release|Win32.Build.0 = Release|Win32
+		{308BF92D-11B1-486E-8BF7-06D36472C39D}.Release|x64.ActiveCfg = Release|x64
+		{308BF92D-11B1-486E-8BF7-06D36472C39D}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

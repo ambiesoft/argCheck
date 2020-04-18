@@ -29,6 +29,8 @@
     "ShouldBeFiles": [
 		"argCheck.exe",
 		"argCheck.pdb",
+		"argCheckFromClipboard.exe",
+		"argCheckFromClipboard.pdb",
 		"msvcp120.dll",
 		"msvcr120.dll",
 		"vccorlib120.dll",
