@@ -1,3 +1,6 @@
+2021/02/17 version 1.0.8
+HighDPI form
+
 2020/04/18 version 1.0.7
 Added 'argCheckFromClipboard'
 

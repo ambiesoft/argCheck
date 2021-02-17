@@ -75,7 +75,7 @@ INT_PTR CALLBACK About(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
 		}
 		else if (LOWORD(wParam) == IDC_BUTTON_GOTOWEB)
 		{
-			OpenCommon(hDlg, L"https://github.com/ambiesoft/argCheck");
+			OpenCommon(hDlg, L"https://ambiesoft.github.io/webjumper/?target=argCheck");
 		}
 		break;
 	}
@@ -277,6 +277,7 @@ INT_PTR CALLBACK MainDlgProc(HWND hDlg, UINT uMsg, WPARAM wParam, LPARAM lParam)
 		SetDlgItemText(hDlg, IDC_EDIT_COMMANDLINE, spData->commnadline_.c_str());
 		EnableTextTripleClickSelectAll(GetDlgItem(hDlg, IDC_EDIT_COMMANDLINE));
 
+
 		SetDlgItemText(hDlg, IDC_EDIT_MAIN, spData->message_.c_str());
 		SetDlgItemText(hDlg, IDC_EDIT_MAINWW, spData->message_.c_str());
 
@@ -296,7 +297,13 @@ INT_PTR CALLBACK MainDlgProc(HWND hDlg, UINT uMsg, WPARAM wParam, LPARAM lParam)
 	{
 		switch (LOWORD(wParam))
 		{
-		case IDOK:// through
+		case IDOK:
+			if(GetFocus()==GetDlgItem(hDlg, IDC_EDIT_COMMANDLINE))
+			{ 
+				PostMessage(hDlg, WM_COMMAND, IDC_BUTTON_REPARSE, 0);
+				break;
+			}
+			// through
 		case IDM_EXIT:
 		{
 			LRESULT ww = SendDlgItemMessage(hDlg, IDC_CHECK_WORDWRAP, BM_GETCHECK, 0, 0);
@@ -351,6 +358,7 @@ INT_PTR CALLBACK MainDlgProc(HWND hDlg, UINT uMsg, WPARAM wParam, LPARAM lParam)
 		}
 		break;
 
+		
 		}
 	}
 	break;

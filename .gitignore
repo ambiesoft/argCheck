@@ -1,3 +1,4 @@
+.vs/
 Debug/
 Release/
 argCheck.sdf
@@ -9,5 +10,5 @@ ipch/
 build/
 .*~
 *.opensdf
-
+*.user
 
