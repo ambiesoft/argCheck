@@ -1,0 +1,1 @@
+﻿"Failed to get text from clipboard."="クリップボードからテキストを取得できませんでした。"

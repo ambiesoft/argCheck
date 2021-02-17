@@ -99,6 +99,16 @@
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
+    <PostBuildEvent>
+      <Command>copy "$(SolutionDir)README.md" "$(TargetDir)"
+copy "$(SolutionDir)History.txt" "$(TargetDir)"
+copy "$(SolutionDir)LICENSE" "$(TargetDir)"
+
+copy "$(SolutionDir)argCheckFromClipboard\lang\argCheckFromClipboard.jpn.txt" "$(TargetDir)"
+
+del "$(OutDir)zzzDist.*"
+</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -112,6 +122,16 @@
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
+    <PostBuildEvent>
+      <Command>copy "$(SolutionDir)README.md" "$(TargetDir)"
+copy "$(SolutionDir)History.txt" "$(TargetDir)"
+copy "$(SolutionDir)LICENSE" "$(TargetDir)"
+
+copy "$(SolutionDir)argCheckFromClipboard\lang\argCheckFromClipboard.jpn.txt" "$(TargetDir)"
+
+del "$(OutDir)zzzDist.*"
+</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -137,6 +157,8 @@
       <Command>copy "$(SolutionDir)README.md" "$(TargetDir)"
 copy "$(SolutionDir)History.txt" "$(TargetDir)"
 copy "$(SolutionDir)LICENSE" "$(TargetDir)"
+
+copy "$(SolutionDir)argCheckFromClipboard\lang\argCheckFromClipboard.jpn.txt" "$(TargetDir)"
 
 del "$(OutDir)zzzDist.*"
 </Command>
@@ -166,6 +188,8 @@ del "$(OutDir)zzzDist.*"
       <Command>copy "$(SolutionDir)README.md" "$(TargetDir)"
 copy "$(SolutionDir)History.txt" "$(TargetDir)"
 copy "$(SolutionDir)LICENSE" "$(TargetDir)"
+
+copy "$(SolutionDir)argCheckFromClipboard\lang\argCheckFromClipboard.jpn.txt" "$(TargetDir)"
 
 del "$(OutDir)zzzDist.*"
 </Command>
