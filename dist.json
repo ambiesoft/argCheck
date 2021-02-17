@@ -6,16 +6,16 @@
     "targets": [
             {
             	"setoutdirforbuild": false,
-        	    "outdir" : "Release\\v120_xp\\argCheck\\x86\\",
+        	    "outdir" : "Release\\v142\\argCheck\\x86\\",
                 "platform":"Win32"
             },
             {
             	"setoutdirforbuild": false,
-        	    "outdir" : "Release\\v120_xp\\argCheck\\x64\\",
+        	    "outdir" : "Release\\v142\\argCheck\\x64\\",
                 "platform":"x64"
             }
     ],
-    "archivingdir": "Release\\v120_xp\\argCheck\\",
+    "archivingdir": "Release\\v142\\argCheck\\",
     "archivedir": "C:/Linkout/",
     "remotedir": "http://ambiesoft.fam.cx/ffdav/uploads/argCheck/",
     "remotesha1" : "http://ambiesoft.fam.cx/ffdav/uploads/getSha1.php?file=argCheck/{}",
@@ -31,9 +31,6 @@
 		"argCheck.pdb",
 		"argCheckFromClipboard.exe",
 		"argCheckFromClipboard.pdb",
-		"msvcp120.dll",
-		"msvcr120.dll",
-		"vccorlib120.dll",
 		"History.txt",
 		"LICENSE",
 		"README.md"
