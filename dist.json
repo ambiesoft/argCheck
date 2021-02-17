@@ -31,6 +31,8 @@
 		"argCheck.pdb",
 		"argCheckFromClipboard.exe",
 		"argCheckFromClipboard.pdb",
+		"lang\\argCheckFromClipboard.jpn.txt",
+		"lang\\argCheck.jpn.txt",
 		"History.txt",
 		"LICENSE",
 		"README.md"

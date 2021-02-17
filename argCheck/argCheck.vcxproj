@@ -162,12 +162,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <Text Include="..\History.txt" />
+    <Text Include="lang\argCheck.jpn.txt" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\lsMisc\CenterWindow.h" />
     <ClInclude Include="..\..\lsMisc\CommandLineString.h" />
     <ClInclude Include="..\..\lsMisc\EnableTextTripleClickSelectAll.h" />
     <ClInclude Include="..\..\lsMisc\HighDPI.h" />
+    <ClInclude Include="..\..\lsMisc\I18N.h" />
     <ClInclude Include="..\..\lsMisc\OpenCommon.h" />
     <ClInclude Include="..\..\lsMisc\stdosd\stdosd.h" />
     <ClInclude Include="..\..\lsMisc\stdwin32\stdwin32.h" />
@@ -180,6 +182,7 @@
     <ClCompile Include="..\..\lsMisc\CenterWindow.cpp" />
     <ClCompile Include="..\..\lsMisc\EnableTextTripleClickSelectAll.cpp" />
     <ClCompile Include="..\..\lsMisc\HighDPI.cpp" />
+    <ClCompile Include="..\..\lsMisc\I18N.cpp" />
     <ClCompile Include="..\..\lsMisc\OpenCommon.cpp" />
     <ClCompile Include="..\..\lsMisc\stdosd\stdosd.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>

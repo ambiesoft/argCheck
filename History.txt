@@ -1,3 +1,9 @@
+2021/02/17 version 1.0.10
+I18N
+
+2021/02/17 version 1.0.9
+Change Fond to Meiryo UI 9
+
 2021/02/17 version 1.0.8
 HighDPI form
 

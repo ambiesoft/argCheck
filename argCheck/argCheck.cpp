@@ -30,10 +30,11 @@
 #include "../../lsMisc/HighDPI.h"
 #include "../../lsMisc/OpenCommon.h"
 #include "../../lsMisc/EnableTextTripleClickSelectAll.h"
+#include "../../lsMisc/I18N.h"
 
 #include "argCheck.h"
 
-#define I18N(t) t
+
 
 using namespace std;
 using namespace Ambiesoft::stdwin32;
@@ -272,6 +273,15 @@ INT_PTR CALLBACK MainDlgProc(HWND hDlg, UINT uMsg, WPARAM wParam, LPARAM lParam)
 	case WM_INITDIALOG:
 	{
 		spData = (MainDialogData*)lParam;
+
+		HWND i18nExcepts[] = {
+			GetDlgItem(hDlg,IDOK),
+		};
+		i18nChangeDialogText(hDlg, i18nExcepts, _countof(i18nExcepts));
+
+		i18nChangeMenuText(GetMenu(hDlg));
+
+
 		SetWindowText(hDlg, spData->title_.c_str());
 		
 		SetDlgItemText(hDlg, IDC_EDIT_COMMANDLINE, spData->commnadline_.c_str());
@@ -373,6 +383,9 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 {
 	UNREFERENCED_PARAMETER(hPrevInstance);
 	UNREFERENCED_PARAMETER(lpCmdLine);
+
+	i18nInitLangmap(NULL, NULL, APPNAME);
+
 	ghInst = hInstance;
 
 	InitHighDPISupport();

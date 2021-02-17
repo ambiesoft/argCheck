@@ -104,7 +104,9 @@
 copy "$(SolutionDir)History.txt" "$(TargetDir)"
 copy "$(SolutionDir)LICENSE" "$(TargetDir)"
 
-copy "$(SolutionDir)argCheckFromClipboard\lang\argCheckFromClipboard.jpn.txt" "$(TargetDir)"
+mkdir "$(TargetDir)lang\"
+copy "$(SolutionDir)argCheck\lang\argCheck.jpn.txt" "$(TargetDir)lang\"
+copy "$(SolutionDir)argCheckFromClipboard\lang\argCheckFromClipboard.jpn.txt" "$(TargetDir)lang\"
 
 del "$(OutDir)zzzDist.*"
 </Command>
@@ -127,7 +129,9 @@ del "$(OutDir)zzzDist.*"
 copy "$(SolutionDir)History.txt" "$(TargetDir)"
 copy "$(SolutionDir)LICENSE" "$(TargetDir)"
 
-copy "$(SolutionDir)argCheckFromClipboard\lang\argCheckFromClipboard.jpn.txt" "$(TargetDir)"
+mkdir "$(TargetDir)lang\"
+copy "$(SolutionDir)argCheck\lang\argCheck.jpn.txt" "$(TargetDir)lang\"
+copy "$(SolutionDir)argCheckFromClipboard\lang\argCheckFromClipboard.jpn.txt" "$(TargetDir)lang\"
 
 del "$(OutDir)zzzDist.*"
 </Command>
@@ -158,7 +162,9 @@ del "$(OutDir)zzzDist.*"
 copy "$(SolutionDir)History.txt" "$(TargetDir)"
 copy "$(SolutionDir)LICENSE" "$(TargetDir)"
 
-copy "$(SolutionDir)argCheckFromClipboard\lang\argCheckFromClipboard.jpn.txt" "$(TargetDir)"
+mkdir "$(TargetDir)lang\"
+copy "$(SolutionDir)argCheck\lang\argCheck.jpn.txt" "$(TargetDir)lang\"
+copy "$(SolutionDir)argCheckFromClipboard\lang\argCheckFromClipboard.jpn.txt" "$(TargetDir)lang\"
 
 del "$(OutDir)zzzDist.*"
 </Command>
@@ -189,7 +195,9 @@ del "$(OutDir)zzzDist.*"
 copy "$(SolutionDir)History.txt" "$(TargetDir)"
 copy "$(SolutionDir)LICENSE" "$(TargetDir)"
 
-copy "$(SolutionDir)argCheckFromClipboard\lang\argCheckFromClipboard.jpn.txt" "$(TargetDir)"
+mkdir "$(TargetDir)lang\"
+copy "$(SolutionDir)argCheck\lang\argCheck.jpn.txt" "$(TargetDir)lang\"
+copy "$(SolutionDir)argCheckFromClipboard\lang\argCheckFromClipboard.jpn.txt" "$(TargetDir)lang\"
 
 del "$(OutDir)zzzDist.*"
 </Command>
