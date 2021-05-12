@@ -17,8 +17,8 @@
     ],
     "archivingdir": "Release\\v142\\argCheck\\",
     "archivedir": "C:/Linkout/",
-    "remotedir": "http://ambiesoft.fam.cx/ffdav/uploads/argCheck/",
-    "remotesha1" : "http://ambiesoft.fam.cx/ffdav/uploads/getSha1.php?file=argCheck/{}",
+    "remotedir": "http://ambiesoft.mooo.com/ffdav/uploads/argCheck/",
+    "remotesha1" : "http://ambiesoft.mooo.com/ffdav/uploads/getSha1.php?file=argCheck/{}",
     
     "TotalFileCount": "exact",
     
