@@ -31,6 +31,7 @@
 #include "../../lsMisc/OpenCommon.h"
 #include "../../lsMisc/EnableTextTripleClickSelectAll.h"
 #include "../../lsMisc/I18N.h"
+#include "../../lsMisc/GetVersionString.h"
 
 #include "argCheck.h"
 
@@ -66,8 +67,13 @@ INT_PTR CALLBACK About(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
 	switch (message)
 	{
 	case WM_INITDIALOG:
+	{
+		wstring version = GetVersionString(stdGetModuleFileName().c_str(), 3);
+		SetDlgItemText(hDlg, IDC_STATIC_TITLEANDVERSION,
+			stdFormat(L"%s v%s", APPNAME, version.c_str()).c_str());
 		return (INT_PTR)TRUE;
-
+	}
+	break;
 	case WM_COMMAND:
 		if (LOWORD(wParam) == IDOK || LOWORD(wParam) == IDCANCEL)
 		{
