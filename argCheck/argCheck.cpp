@@ -38,7 +38,6 @@
 
 
 using namespace std;
-using namespace Ambiesoft::stdwin32;
 using namespace Ambiesoft;
 using namespace Ambiesoft::stdosd;
 
@@ -143,7 +142,7 @@ wstring ParseCommandLine(LPCWSTR pCommnadLine = nullptr)
 			message += I18N(L"CRT argc");
 			message += L":";
 			message += KAIGYO;
-			message += stdItoT(__argc);
+			message += to_wstring(__argc);
 			message += KAIGYO;
 			message += KAIGYO;
 
@@ -172,7 +171,7 @@ wstring ParseCommandLine(LPCWSTR pCommnadLine = nullptr)
 		message += I18N(L"Shell argc");
 		message += L":";
 		message += KAIGYO;
-		message += stdItoT(nNumArgs);
+		message += to_wstring(nNumArgs);
 		message += KAIGYO;
 		message += KAIGYO;
 
@@ -201,7 +200,7 @@ wstring ParseCommandLine(LPCWSTR pCommnadLine = nullptr)
 		message += I18N(L"CCommandLineString argc");
 		message += L":";
 		message += KAIGYO;
-		message += stdItoT(nNumArgs);
+		message += to_wstring(nNumArgs);
 		message += KAIGYO;
 		message += KAIGYO;
 
