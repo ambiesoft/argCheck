@@ -17,3 +17,5 @@
 "Length"="長さ"
 "Shell Argument"="Shell 引数"
 "Shell argc"="Shell argc"
+"The results of three methods of parsing Commandline are SAME"="３つのコマンドライン解析の結果は＊同じ＊でした"
+"The results of three methods of parsing Commandline are NOT same"="３つのコマンドライン解析の結果は＊同じではありません＊でした"
