@@ -6,16 +6,16 @@
     "targets": [
             {
             	"setoutdirforbuild": false,
-        	    "outdir" : "Release\\v142\\argCheck\\x86\\",
+        	    "outdir" : "Release\\v143\\argCheck\\x86\\",
                 "platform":"Win32"
             },
             {
             	"setoutdirforbuild": false,
-        	    "outdir" : "Release\\v142\\argCheck\\x64\\",
+        	    "outdir" : "Release\\v143\\argCheck\\x64\\",
                 "platform":"x64"
             }
     ],
-    "archivingdir": "Release\\v142\\argCheck\\",
+    "archivingdir": "Release\\v143\\argCheck\\",
     "archivedir": "C:/Linkout/",
     "remotedir": "https://ambiesoft.com/ffdav/uploads/argCheck/",
     "remotesha1" : "https://ambiesoft.com/ffdav/uploads/getSha1.php?file=argCheck/{}",
