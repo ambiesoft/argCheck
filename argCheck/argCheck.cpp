@@ -122,6 +122,9 @@ wstring ParseCommandLine(LPCWSTR pCommnadLine = nullptr)
 	message += KAIGYO;
 	message += KAIGYO;
 
+	std::vector<wstring> crtResults;
+	std::vector<wstring> commandLineToArgvWResults;
+	std::vector<wstring> CCommandLineStringResults;
 
 	// CRT
 	if (bUserInput)
@@ -154,6 +157,7 @@ wstring ParseCommandLine(LPCWSTR pCommnadLine = nullptr)
 				message += L":";
 				message += KAIGYO;
 				message += __wargv[i];
+				crtResults.push_back(__wargv[i]);
 				message += KAIGYO;
 				message += KAIGYO;
 			}
@@ -183,6 +187,7 @@ wstring ParseCommandLine(LPCWSTR pCommnadLine = nullptr)
 			message += L":";
 			message += KAIGYO;
 			message += pArgv[i];
+			commandLineToArgvWResults.push_back(pArgv[i]);
 			message += KAIGYO;
 			message += KAIGYO;
 		}
@@ -212,13 +217,28 @@ wstring ParseCommandLine(LPCWSTR pCommnadLine = nullptr)
 			message += L":";
 			message += KAIGYO;
 			message += pArgv[i];
+			CCommandLineStringResults.push_back(pArgv[i]);
 			message += KAIGYO;
 			message += KAIGYO;
 		}
 		CCommandLineString::freeCommandLineArg(pArgv);
 	}
 
-	return message;
+	wstring preMessage;
+	if (stdIsAllEqual(crtResults, commandLineToArgvWResults, CCommandLineStringResults))
+	{
+		preMessage += I18N(L"The results of three methods of parsing Commandline are SAME");
+	}
+	else
+	{
+		preMessage += I18N(L"The results of three methods of parsing Commandline are NOT same");
+	}
+	
+	preMessage += KAIGYO;
+	preMessage += HORIZLINE;
+	preMessage += KAIGYO;
+	
+	return preMessage + message;
 }
 
 //// http://rarara.cafe.coocan.jp/cgi-bin/lng/vc/vclng.cgi?print+200807/08070047.txt
@@ -403,10 +423,6 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 
 
 	wstring message = ParseCommandLine();
-	//MessageBox(NULL,
-	//	message.c_str(),
-	//	szTitle,
-	//	MB_ICONINFORMATION);
 
 	MainDialogData data;
 	do
