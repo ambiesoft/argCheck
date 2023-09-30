@@ -25,6 +25,7 @@
 //OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #include "stdafx.h"
+#include <sstream>
 
 #include "../../lsMisc/CommandLineString.h"
 #include "../../lsMisc/HighDPI.h"
@@ -88,6 +89,27 @@ INT_PTR CALLBACK About(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
 	return (INT_PTR)FALSE;
 }
 
+wstring GetAllEnv()
+{
+	extern wchar_t** _wenviron; // _wenvironはwchar_tでの環境変数のリストを指す外部変数
+
+	wstringstream wss;
+	for (wchar_t** env = _wenviron; *env != nullptr; ++env) {
+		std::wstring envString(*env); // 環境変数のwstringをコピー
+
+		// KEY=VALUE形式に分割して表示
+		size_t pos = envString.find(L'=');
+		if (pos != std::wstring::npos) {
+			std::wstring key = envString.substr(0, pos);
+			std::wstring value = envString.substr(pos + 1);
+			wss << key << L"=" << value << L"\r\n";
+		}
+	}
+
+	return wss.str();
+}
+
+
 wstring ParseCommandLine(LPCWSTR pCommnadLine = nullptr)
 {
 	bool bUserInput = pCommnadLine != nullptr;
@@ -119,6 +141,13 @@ wstring ParseCommandLine(LPCWSTR pCommnadLine = nullptr)
 	message += L":";
 	message += KAIGYO;
 	message += std::to_wstring(lstrlen(pCommnadLine));
+	message += KAIGYO;
+	message += KAIGYO;
+
+	message += I18N(L"Environment");
+	message += L":";
+	message += KAIGYO;
+	message += GetAllEnv();
 	message += KAIGYO;
 	message += KAIGYO;
 
@@ -416,7 +445,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 	InitHighDPISupport();
 
 	gIni = stdCombinePath(stdGetParentDirectory(stdGetModuleFileName()), 
-		stdGetFileNameWitoutExtension(APPNAME) + L".ini");
+		stdGetFileNameWithoutExtension(APPNAME) + L".ini");
 
 	LoadStringW(hInstance, IDS_APP_TITLE, szTitle, MAX_LOADSTRING);
 	LoadStringW(hInstance, IDC_ARGCHECK, szWindowClass, MAX_LOADSTRING);
